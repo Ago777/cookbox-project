@@ -1,0 +1,30 @@
+.lang-switcher {
+  display: inline-flex;
+  padding: 2px;
+  border: 1.5px solid var(--color-dark);
+  border-radius: 999px;
+  background: var(--color-surface);
+}
+
+.lang-switcher__btn {
+  min-width: 46px;
+  min-height: 36px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.lang-switcher__btn[aria-pressed='true'] {
+  background: var(--color-dark);
+  color: var(--color-surface);
+}
+
+@media (min-width: 768px) {
+  .lang-switcher__btn {
+    min-height: 38px;
+  }
+}

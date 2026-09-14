@@ -1,0 +1,38 @@
+/* Round badge in the app's own color behind its real logo — helps older users recognise the app. */
+.brand-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: #fff;
+  background: var(--color-dark);
+}
+
+.brand-badge svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* official brand colors (Simple Icons) */
+.brand-badge--whatsapp {
+  background: #25d366;
+}
+
+.brand-badge--viber {
+  background: #7360f2;
+}
+
+.brand-badge--telegram {
+  background: #26a5e4;
+}
+
+.brand-badge--facebook {
+  background: #0866ff;
+}
+
+.brand-badge--instagram {
+  background: #ff0069;
+}

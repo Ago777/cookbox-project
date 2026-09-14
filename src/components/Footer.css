@@ -1,0 +1,125 @@
+.site-footer {
+  margin-top: 40px;
+  background: var(--color-dark);
+  color: #fff;
+}
+
+.site-footer__inner {
+  display: grid;
+  gap: 20px;
+  padding-block: 28px 20px;
+}
+
+.site-footer__brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.site-footer__brand p {
+  margin: 0;
+}
+
+.site-footer__name {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.site-footer__tagline {
+  color: rgb(255 255 255 / 0.75);
+  font-size: var(--fs-sm);
+}
+
+.site-footer__contacts {
+  display: grid;
+  gap: 12px;
+}
+
+.site-footer__contacts p {
+  margin: 0;
+}
+
+.site-footer__phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  justify-self: start;
+  min-height: var(--tap);
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.site-footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: var(--tap);
+  padding: 4px 14px 4px 5px;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.08);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  background: rgb(255 255 255 / 0.16);
+}
+
+.footer-link .brand-badge {
+  width: 34px;
+  height: 34px;
+}
+
+.footer-link .brand-badge svg {
+  width: 18px;
+  height: 18px;
+}
+
+.site-footer :focus-visible {
+  outline-color: var(--color-orange);
+}
+
+.site-footer__copy {
+  margin: 0;
+  padding-block: 14px 18px;
+  border-top: 1px solid rgb(255 255 255 / 0.15);
+  color: rgb(255 255 255 / 0.7);
+  font-size: var(--fs-sm);
+}
+
+@media (min-width: 640px) {
+  .site-footer__inner {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
+
+  .site-footer__contacts {
+    justify-items: end;
+  }
+
+  .site-footer__phone {
+    justify-self: end;
+  }
+
+  .site-footer__links {
+    justify-content: flex-end;
+  }
+}
+
+/* desktop: the fixed bottom ContactBar carries brand, contacts and © instead */
+@media (min-width: 1024px) {
+  .site-footer {
+    display: none;
+  }
+}

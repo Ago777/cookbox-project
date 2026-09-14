@@ -1,0 +1,208 @@
+.contact-bar {
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 50;
+  padding-bottom: env(safe-area-inset-bottom);
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  box-shadow: 0 -4px 18px rgb(23 22 21 / 0.1);
+}
+
+/* keep the end of the page clear of the fixed bar */
+body {
+  padding-bottom: calc(var(--bar-h) + env(safe-area-inset-bottom));
+}
+
+.contact-bar__inner {
+  display: flex;
+  align-items: center;
+  min-height: var(--bar-h);
+  padding-block: 8px;
+}
+
+.contact-bar__brand {
+  display: none;
+}
+
+/* ---------- phones & tablets: big Call button + 3 chat apps ---------- */
+.contact-bar__actions {
+  display: flex;
+  align-items: stretch;
+  gap: 4px;
+  width: 100%;
+  max-width: 560px;
+  margin-inline: auto;
+}
+
+.contact-bar__call {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 0;
+  min-height: 48px;
+  padding: 0 10px;
+  border-radius: 12px;
+  background: var(--color-orange);
+  color: var(--color-dark);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.contact-bar__call:hover {
+  background: var(--color-orange-hover);
+}
+
+.contact-bar__call svg {
+  flex-shrink: 0;
+}
+
+.contact-bar__number {
+  display: none;
+}
+
+.contact-bar__chat {
+  display: flex;
+  flex: 0 0 60px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.contact-bar__chat:hover {
+  background: var(--color-bg);
+}
+
+.contact-bar__chat--desktop {
+  display: none;
+}
+
+.contact-bar__chat .brand-badge {
+  width: 32px;
+  height: 32px;
+}
+
+.contact-bar__chat .brand-badge svg {
+  width: 18px;
+  height: 18px;
+}
+
+.contact-bar__label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+/* 320–359px phones: drop the small labels so "Call" never overflows */
+@media (max-width: 359px) {
+  .contact-bar__chat {
+    flex-basis: 46px;
+  }
+
+  .contact-bar__label {
+    display: none;
+  }
+
+  .contact-bar__call {
+    padding-inline: 6px;
+    font-size: 0.875rem;
+  }
+}
+
+/* ---------- desktop: dark footer bar with every channel ---------- */
+@media (min-width: 1024px) {
+  .contact-bar {
+    background: var(--color-dark);
+    color: #fff;
+    border-top: 0;
+  }
+
+  .contact-bar__inner {
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .contact-bar__brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgb(255 255 255 / 0.75);
+    font-size: var(--fs-sm);
+    white-space: nowrap;
+  }
+
+  .contact-bar__actions {
+    align-items: center;
+    gap: 8px;
+    width: auto;
+    max-width: none;
+    margin: 0;
+  }
+
+  .contact-bar__call {
+    flex: 0 0 auto;
+    min-height: 44px;
+    padding: 0 18px;
+    border-radius: 999px;
+    font-size: var(--fs-base);
+  }
+
+  /* the number says more than "Call" on a computer — people dial it from their phone */
+  .contact-bar__call-label {
+    display: none;
+  }
+
+  .contact-bar__number {
+    display: inline;
+  }
+
+  .contact-bar__chat,
+  .contact-bar__chat--desktop {
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: row;
+    gap: 8px;
+    min-height: 44px;
+    padding: 4px;
+    border-radius: 999px;
+  }
+
+  .contact-bar__chat:hover {
+    background: rgb(255 255 255 / 0.12);
+  }
+
+  .contact-bar__chat .brand-badge {
+    width: 36px;
+    height: 36px;
+  }
+
+  .contact-bar__label {
+    display: none;
+    font-size: var(--fs-sm);
+  }
+
+  .contact-bar :focus-visible {
+    outline-color: var(--color-orange);
+  }
+}
+
+/* wide desktop: room for the app names next to the logos */
+@media (min-width: 1280px) {
+  .contact-bar__chat,
+  .contact-bar__chat--desktop {
+    padding-right: 14px;
+    background: rgb(255 255 255 / 0.08);
+  }
+
+  .contact-bar__label {
+    display: inline;
+  }
+}
