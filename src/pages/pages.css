@@ -362,3 +362,44 @@
 .not-found {
   padding-bottom: 40px;
 }
+
+/* ---------- menu download button ---------- */
+.menu-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: var(--tap);
+  margin-bottom: 16px;
+  padding: 0 18px;
+  border: 1.5px solid var(--color-orange);
+  border-radius: 999px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color var(--dur) var(--ease);
+}
+
+.menu-download:hover {
+  background: #fff3e6;
+}
+
+.menu-download svg {
+  width: 20px;
+  height: 20px;
+  color: var(--color-orange);
+}
+
+/* ---------- related products (product page) ---------- */
+.related {
+  margin-top: 36px;
+  padding-bottom: 32px;
+}
+
+/* 3 suggestions in a 2-column phone grid would leave a hole: show 2 there */
+@media (max-width: 719px) {
+  .related__grid > li:nth-child(3) {
+    display: none;
+  }
+}

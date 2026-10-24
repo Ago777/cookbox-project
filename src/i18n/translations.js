@@ -5,7 +5,7 @@ export const translations = {
     'nav.about': 'Մեր մասին',
     'nav.reviews': 'Կարծիքներ',
     'nav.order': 'Պատվիրել',
-    'nav.gallery': 'Նկարներ',
+    'nav.gallery': 'Մեր ուտեստները',
     'nav.label': 'Հիմնական մենյու',
 
     'reviews.intro': 'Իրական կարծիքներ մեր հաճախորդներից։',
@@ -18,22 +18,26 @@ export const translations = {
     'order.choose.title': 'Ընտրեք',
     'order.choose.text': 'Ընտրեք ձեզ դուր եկած ապրանքները ցանկից։',
     'order.write.title': 'Գրեք մեզ',
-    'order.write.text': 'Գրեք մեզ Facebook-ով կամ Instagram-ով և ասեք ձեր պատվերը։',
+    'order.write.text': 'Գրեք մեզ Facebook-ով կամ Instagram-ով։',
     'order.get.title': 'Ստացեք',
-    'order.get.text': 'Առաքում ենք Երևանում։ Վճարումը՝ կանխիկ առաքման պահին։',
+    'order.get.text': 'Առաքում ենք Երևանում, Աբովյանում, Աշտարակում, Էջմիածնում և Մասիսում՝ ցանկացած ժամի, շաբաթվա ցանկացած օր։',
 
     'lang.label': 'Լեզու',
 
-    'brand.tagline': 'Տնական համով կիսաֆաբրիկատներ',
-    'home.pageTitle': 'Տնական համով կիսաֆաբրիկատներ Երևանում',
+    'brand.tagline': 'Տնական համեղ կիսաֆաբրիկատներ',
+    'home.pageTitle': 'Տնական համեղ կիսաֆաբրիկատներ Երևանում',
 
     'hero.title': 'Տնական համը՝ ձեր սեղանին',
     'hero.text': 'Տոլմա, պելմենի, կոտլետ, խաչապուրի և ավելին՝ սառեցված և պատրաստ եփելու։',
     'hero.chipDelivery': 'Անվճար առաքում Երևանում՝ 5000 ֏-ից',
 
     'products.title': 'Մեր ապրանքները',
+    'menu.download': 'Ներբեռնել մենյուն',
 
     'product.details': 'Մանրամասն',
+    'product.order': 'Պատվիրել',
+    'product.related': 'Ձեզ կարող է դուր գալ',
+    'product.orderMessage': 'Բարև ձեզ, ուզում եմ պատվիրել՝ {name}',
     'product.description': 'Նկարագրություն',
     'product.cooking': 'Ինչպես պատրաստել',
     'product.storage': 'Պահպանում',
@@ -43,19 +47,21 @@ export const translations = {
     'product.photo': 'Լուսանկար',
 
     'contact.title': 'Պատվիրել',
-    'contact.text': 'Զանգահարեք կամ գրեք մեզ ձեզ հարմար ձևով։',
+    'contact.text': 'Գրեք մեզ ձեզ հարմար տարբերակով։',
+    'order.cta.title': 'Պատրա՞ստ եք պատվիրել',
+    'order.cta.text': 'Գրեք մեզ Facebook-ով կամ Instagram-ով՝ ձեր պատվերը ուղարկելու համար։',
     'contact.call': 'Զանգահարել',
     'contact.bar': 'Կապ մեզ հետ',
 
     'about.title': 'Մեր մասին',
-    'about.delivery': 'Առաքում և վճարում',
+    'about.delivery': 'Առաքում',
     'about.area': 'Առաքման տարածք',
     'about.cost': 'Առաքման արժեք',
     'about.minOrder': 'Նվազագույն պատվեր',
-    'about.payment': 'Վճարում',
+    'about.time': 'Առաքման ժամեր',
     'about.hours': 'Աշխատանքային ժամեր',
 
-    'gallery.title': 'Նկարներ',
+    'gallery.title': 'Մեր ուտեստները',
     'gallery.empty': 'Լուսանկարները շուտով կավելացվեն',
     'gallery.open': 'Բացել լուսանկարը',
     'gallery.close': 'Փակել',
@@ -86,9 +92,9 @@ export const translations = {
     'order.choose.title': 'Выберите',
     'order.choose.text': 'Выберите понравившиеся продукты из списка.',
     'order.write.title': 'Напишите нам',
-    'order.write.text': 'Напишите нам в Facebook или Instagram и назовите заказ.',
+    'order.write.text': 'Напишите нам в Facebook или Instagram.',
     'order.get.title': 'Получите',
-    'order.get.text': 'Доставляем по Еревану. Оплата наличными при доставке.',
+    'order.get.text': 'Доставляем по Еревану, в Абовян, Аштарак, Эчмиадзин и Масис — в любое время, в любой день недели.',
 
     'lang.label': 'Язык',
 
@@ -100,8 +106,12 @@ export const translations = {
     'hero.chipDelivery': 'Бесплатная доставка по Еревану от 5000 ֏',
 
     'products.title': 'Наша продукция',
+    'menu.download': 'Скачать меню',
 
     'product.details': 'Подробнее',
+    'product.order': 'Заказать',
+    'product.related': 'Вам может понравиться',
+    'product.orderMessage': 'Здравствуйте, хочу заказать: {name}',
     'product.description': 'Описание',
     'product.cooking': 'Как приготовить',
     'product.storage': 'Хранение',
@@ -111,16 +121,18 @@ export const translations = {
     'product.photo': 'Фото',
 
     'contact.title': 'Заказать',
-    'contact.text': 'Позвоните или напишите нам удобным для вас способом.',
+    'contact.text': 'Напишите нам удобным для вас способом.',
+    'order.cta.title': 'Готовы заказать?',
+    'order.cta.text': 'Напишите нам в Facebook или Instagram, чтобы оформить заказ.',
     'contact.call': 'Позвонить',
     'contact.bar': 'Связаться с нами',
 
     'about.title': 'О нас',
-    'about.delivery': 'Доставка и оплата',
+    'about.delivery': 'Доставка',
     'about.area': 'Зона доставки',
     'about.cost': 'Стоимость доставки',
     'about.minOrder': 'Минимальный заказ',
-    'about.payment': 'Оплата',
+    'about.time': 'Время доставки',
     'about.hours': 'Часы работы',
 
     'gallery.title': 'Фото',

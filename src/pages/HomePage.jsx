@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { Icon } from '../components/Icon'
 import { ProductCard } from '../components/ProductCard'
 import { ReviewCard } from '../components/ReviewCard'
 import { products } from '../data/products'
@@ -40,7 +41,13 @@ export function HomePage() {
       </section>
 
       <section id="products" className="container section">
-        <h2 className="section-title">{t('products.title')}</h2>
+        <div className="section-head">
+          <h2 className="section-title">{t('products.title')}</h2>
+          <a className="menu-download" href={asset('/cookbox-menu.jpg')} download="CookBox-menu.jpg">
+            <Icon name="download" />
+            {t('menu.download')}
+          </a>
+        </div>
         <ul className="product-grid">
           {products.map((product) => (
             <li key={product.slug}>

@@ -2,9 +2,12 @@ import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { ContactButtons } from '../components/ContactButtons'
 import { Icon } from '../components/Icon'
+import { ProductCard } from '../components/ProductCard'
 import { ProductImage } from '../components/ProductImage'
 import { findProduct } from '../data/products'
+import { relatedProducts } from '../data/related'
 import { useLanguage } from '../i18n/useLanguage'
+import { useOrderLinks } from '../utils/useOrderLinks'
 import { smallAsset } from '../utils/asset'
 import { formatPrice } from '../utils/format'
 import { usePageTitle } from '../utils/usePageTitle'
@@ -26,6 +29,8 @@ function ProductDetails({ product }) {
   const name = pick(product.name)
   const size = pick(product.size)
   usePageTitle(name)
+  const links = useOrderLinks(name)
+  const related = relatedProducts(product.slug)
 
   const sections = [
     { key: 'product.description', text: pick(product.description) },
@@ -84,10 +89,23 @@ function ProductDetails({ product }) {
           <section className="contact-card">
             <h2>{t('contact.title')}</h2>
             <p>{t('contact.text')}</p>
-            <ContactButtons />
+            <ContactButtons links={links} />
           </section>
         </div>
       </article>
+
+      {related.length > 0 && (
+        <section className="related">
+          <h2 className="section-title">{t('product.related')}</h2>
+          <ul className="product-grid related__grid">
+            {related.map((p) => (
+              <li key={p.slug}>
+                <ProductCard product={p} />
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
     </div>
   )
 }

@@ -126,7 +126,7 @@ export const products = [
   },
   {
     slug: 'ghavurma',
-    name: { hy: 'Ղավուրմա', ru: 'Гаурма' },
+    name: { hy: 'Ղավուրմա', ru: 'Гавурма' },
     size: { hy: '0.5 կգ', ru: '0,5 кг' },
     price: 10000,
     images: ['/products/ghavurma.jpg'],

@@ -16,3 +16,32 @@ export const messengerLinks = CHANNELS.filter((c) => contacts[c.id]).map((c) => 
   label: c.label,
   href: c.href(contacts[c.id]),
 }))
+
+// "https://www.facebook.com/profile.php?id=123" → "123", ".../cookbox_arm" → "cookbox_arm"
+function handleFromUrl(url) {
+  try {
+    const u = new URL(url)
+    return u.searchParams.get('id') || u.pathname.split('/').filter(Boolean).pop() || ''
+  } catch {
+    return ''
+  }
+}
+
+// Direct-message links for the "order" buttons. `text` is a ready-made first
+// message ("Hello, I want to order …"). Messenger and WhatsApp accept it;
+// Instagram and Telegram only open the chat, the customer types the message.
+const ORDER_HREF = {
+  whatsapp: (v, text) => `https://wa.me/${v}?text=${encodeURIComponent(text)}`,
+  viber: (v) => `viber://chat?number=${encodeURIComponent(v)}`,
+  telegram: (v) => `https://t.me/${v}`,
+  facebook: (v, text) => `https://m.me/${handleFromUrl(v)}?text=${encodeURIComponent(text)}`,
+  instagram: (v) => `https://ig.me/m/${handleFromUrl(v)}`,
+}
+
+export function orderLinks(text) {
+  return CHANNELS.filter((c) => contacts[c.id]).map((c) => ({
+    id: c.id,
+    label: c.label,
+    href: ORDER_HREF[c.id](contacts[c.id], text),
+  }))
+}

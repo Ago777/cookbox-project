@@ -49,26 +49,10 @@
   height: auto;
 }
 
-.site-header__wordmark {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.1;
-}
-
 .site-header__name {
   font-size: 1.1875rem;
   font-weight: 700;
   letter-spacing: -0.01em;
-}
-
-/* the logo mark already spells COOKBOX, so the tagline adds the missing
-   information instead of repeating the name — desktop only */
-.site-header__tagline {
-  display: none;
-  margin-top: 2px;
-  color: rgb(255 255 255 / 0.68);
-  font-size: 0.75rem;
-  font-weight: 500;
 }
 
 .site-header__nav {
@@ -84,7 +68,8 @@
    as the old 4-link 2×2 grid, and nothing is hidden behind a hamburger. */
 .nav-list {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  /* the middle column is wider: «Մեր ուտեստները» is the longest label */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr) minmax(0, 1fr);
   gap: 5px;
   margin: 0;
   padding: 0;
@@ -124,13 +109,22 @@
   color: var(--color-dark);
 }
 
+/* "Մեր ուտեստները" is the longest label: tighten a little on 360–400px phones */
+@media (max-width: 400px) {
+  .nav-link {
+    padding-inline: 3px;
+    font-size: 0.78rem;
+  }
+}
+
 @media (max-width: 359px) {
   .nav-list {
     gap: 5px;
   }
 
   .nav-link {
-    font-size: 0.8125rem;
+    padding-inline: 2px;
+    font-size: 0.72rem;
   }
 }
 
@@ -247,12 +241,5 @@
   .nav-link::after {
     right: 4px;
     left: 4px;
-  }
-}
-
-/* the tagline only appears where there is room left after the five links */
-@media (min-width: 1200px) {
-  .site-header__tagline {
-    display: block;
   }
 }

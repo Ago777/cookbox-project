@@ -1,7 +1,9 @@
+import { useMatch } from 'react-router-dom'
 import logo from '../assets/brand/logo-color.svg'
 import { contacts } from '../data/contacts'
+import { findProduct } from '../data/products'
 import { useLanguage } from '../i18n/useLanguage'
-import { messengerLinks, phoneHref } from '../utils/contactLinks'
+import { messengerLinks as defaultLinks, orderLinks, phoneHref } from '../utils/contactLinks'
 import { Icon } from './Icon'
 import './brand-badge.css'
 import './ContactBar.css'
@@ -14,7 +16,13 @@ const PHONE_MAX = 3
 // Fixed bottom row of the app shell: one tap to call or open a chat.
 // On desktop it is also the footer (logo + ©).
 export function ContactBar() {
-  const { t } = useLanguage()
+  const { t, pick } = useLanguage()
+  // on a product page the bar becomes the order button for that product
+  const match = useMatch('/product/:slug')
+  const product = match ? findProduct(match.params.slug) : null
+  const messengerLinks = product
+    ? orderLinks(t('product.orderMessage').replace('{name}', pick(product.name)))
+    : defaultLinks
   if (!phoneHref && messengerLinks.length === 0) return null
 
   const onPhone = new Set(messengerLinks.slice(0, PHONE_MAX).map((link) => link.id))
@@ -51,7 +59,7 @@ export function ContactBar() {
               <span className={`brand-badge brand-badge--${link.id}`}>
                 <Icon name={link.id} />
               </span>
-              <span className="contact-bar__label">{link.label}</span>
+              <span className="contact-bar__label">{product ? `${t('product.order')} · ${link.label}` : link.label}</span>
             </a>
           ))}
         </nav>

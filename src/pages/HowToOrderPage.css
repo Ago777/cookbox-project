@@ -1,0 +1,186 @@
+/* ── How To Order page ── */
+.order-page {
+  padding-bottom: 32px;
+}
+
+.order-head {
+  padding: 24px 0 20px;
+}
+
+.order-head__title {
+  margin: 0 0 6px;
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  letter-spacing: -0.02em;
+}
+
+.order-head__lead {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--fs-lg);
+}
+
+/* ── Steps: a vertical timeline joined by an orange line ── */
+.steps--page {
+  position: relative;
+  gap: 0;
+}
+
+.step--rich {
+  position: relative;
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 16px;
+  align-items: start;
+  margin-bottom: 14px;
+  padding: 18px 18px 18px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  box-shadow: var(--shadow);
+}
+
+/* line between the circles */
+.step--rich:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 43px;
+  top: 74px;
+  bottom: -16px;
+  width: 2px;
+  background: repeating-linear-gradient(to bottom, var(--color-orange) 0 6px, transparent 6px 12px);
+  z-index: 1;
+}
+
+.step__icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-orange), #ffb06b);
+  color: var(--color-dark);
+  box-shadow: 0 4px 12px rgb(255 133 40 / 0.35);
+}
+
+.step__icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+/* small step number badge on the circle */
+.step--rich .step__num {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--color-surface);
+  background: var(--color-dark);
+  color: #fff;
+  font-size: 0.8125rem;
+}
+
+.step--rich .step__title {
+  margin: 4px 0 4px;
+  font-size: 1.1875rem;
+}
+
+.step--rich .step__text {
+  font-size: var(--fs-base);
+  line-height: 1.55;
+}
+
+@media (min-width: 720px) {
+  .step--rich {
+    grid-template-columns: 64px 1fr;
+    gap: 20px;
+    padding: 22px 24px;
+  }
+
+  .step__icon {
+    width: 64px;
+    height: 64px;
+  }
+
+  .step--rich:not(:last-child)::after {
+    left: 56px;
+    top: 86px;
+  }
+}
+
+/* ── Delivery info ── */
+.delivery-info {
+  margin-top: 28px;
+}
+
+.delivery-info__title {
+  margin: 0 0 12px;
+  font-size: 1.25rem;
+}
+
+.delivery-chips {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 640px) {
+  .delivery-chips {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.delivery-chip {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px;
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-orange);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.delivery-chip__label {
+  color: var(--color-text-muted);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}
+
+.delivery-chip__value {
+  font-size: var(--fs-base);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* ── CTA ── */
+.order-cta {
+  margin-top: 28px;
+  padding: 22px 18px;
+  border: 1px solid #f5cfa9;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, #fff3e6 0%, #ffe3c7 100%);
+  box-shadow: var(--shadow);
+}
+
+.order-cta__title {
+  margin: 0 0 4px;
+  font-size: 1.375rem;
+}
+
+.order-cta__desc {
+  margin: 0 0 16px;
+  color: var(--color-text);
+  font-size: var(--fs-base);
+}
+
+@media (min-width: 640px) {
+  .order-cta {
+    padding: 28px;
+  }
+}

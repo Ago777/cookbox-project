@@ -1,0 +1,253 @@
+.about-page {
+  padding-bottom: 36px;
+}
+
+/* ── photo banner ── */
+.about-hero-wrap {
+  padding-top: 12px;
+}
+
+.about-hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  height: 200px;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--color-dark);
+  isolation: isolate;
+}
+
+.about-hero img {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 55%;
+}
+
+.about-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(to top, rgb(23 22 21 / 0.82) 0%, rgb(23 22 21 / 0.15) 65%, transparent 100%);
+}
+
+.about-hero__text {
+  padding: 16px 18px;
+}
+
+.about-hero h1 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(1.625rem, 6vw, 2.25rem);
+  letter-spacing: -0.02em;
+}
+
+@media (min-width: 720px) {
+  .about-hero {
+    height: 280px;
+  }
+
+  .about-hero__text {
+    padding: 24px 32px;
+  }
+}
+
+/* ── intro text ── */
+.about-intro {
+  margin-top: 22px;
+}
+
+.about-intro__text {
+  margin: 0 0 10px;
+  font-size: var(--fs-lg);
+  line-height: 1.6;
+}
+
+.about-intro__text:last-child {
+  margin-bottom: 0;
+}
+
+/* ── short facts: icon + label, compact tiles ── */
+.about-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.about-fact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 8px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+}
+
+.about-fact__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #fff3e6;
+  color: var(--color-orange);
+}
+
+.about-fact__icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.about-fact__title {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+/* phones: a vertical list, so long Armenian labels never wrap to 3 lines */
+@media (max-width: 599px) {
+  .about-facts {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .about-fact {
+    flex-direction: row;
+    gap: 14px;
+    padding: 10px 14px;
+    text-align: left;
+  }
+
+  .about-fact__icon {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+  }
+
+  .about-fact__title {
+    font-size: var(--fs-base);
+  }
+}
+
+@media (min-width: 600px) {
+  .about-fact__title {
+    font-size: var(--fs-base);
+  }
+}
+
+/* ── photo strip ── */
+.about-photos {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.about-photos img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+}
+
+/* ── delivery ── */
+.about-delivery {
+  margin-top: 30px;
+  padding: 20px 18px;
+  border: 1px solid #f5cfa9;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, #fff3e6 0%, #ffe9d2 100%);
+}
+
+.about-delivery__title {
+  margin: 0 0 14px;
+  font-size: 1.375rem;
+}
+
+.about-towns__label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 10px;
+  font-weight: 700;
+}
+
+.about-towns__icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--color-orange);
+}
+
+.about-towns__icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.about-towns__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.about-towns__list li {
+  padding: 7px 16px;
+  border-radius: 999px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  font-weight: 700;
+}
+
+.about-delivery__facts {
+  display: grid;
+  gap: 14px;
+  margin: 18px 0 0;
+  padding: 16px 0 0;
+  border-top: 1px dashed #e8b98d;
+  list-style: none;
+}
+
+.about-delivery__facts li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.about-delivery__facts p {
+  margin: 0;
+}
+
+.about-delivery__fact-label {
+  color: var(--color-text-muted);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}
+
+.about-delivery__fact-text {
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+@media (min-width: 720px) {
+  .about-delivery {
+    padding: 26px 28px;
+  }
+}

@@ -6,7 +6,7 @@ import './brand-badge.css'
 import './ContactButtons.css'
 
 // Big call button + every messenger as a labelled button.
-export function ContactButtons() {
+export function ContactButtons({ links = messengerLinks }) {
   const { t } = useLanguage()
 
   return (
@@ -21,9 +21,9 @@ export function ContactButtons() {
         </a>
       )}
 
-      {messengerLinks.length > 0 && (
+      {links.length > 0 && (
         <ul className="contact-buttons__list">
-          {messengerLinks.map((link) => (
+          {links.map((link) => (
             <li key={link.id}>
               <a className="contact-link" href={link.href} target="_blank" rel="noopener noreferrer">
                 <span className={`brand-badge brand-badge--${link.id}`}>

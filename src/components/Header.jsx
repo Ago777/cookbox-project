@@ -6,10 +6,10 @@ import './Header.css'
 
 const NAV = [
   { to: '/', key: 'nav.home', end: true },
-  { to: '/about', key: 'nav.about' },
-  { to: '/how-to-order', key: 'nav.order' },
-  { to: '/reviews', key: 'nav.reviews' },
   { to: '/gallery', key: 'nav.gallery' },
+  { to: '/reviews', key: 'nav.reviews' },
+  { to: '/how-to-order', key: 'nav.order' },
+  { to: '/about', key: 'nav.about' },
 ]
 
 // Call button lives in the always-visible bottom contact bar, so the header stays light.
@@ -21,10 +21,7 @@ export function Header() {
       <div className="container site-header__inner">
         <Link to="/" className="site-header__logo">
           <img src={logo} alt="" width="52" height="49" />
-          <span className="site-header__wordmark">
-            <span className="site-header__name">CookBox</span>
-            <span className="site-header__tagline">{t('brand.tagline')}</span>
-          </span>
+          <span className="site-header__name">CookBox</span>
         </Link>
 
         {/* No hamburger: only 4 links, so they are always visible */}

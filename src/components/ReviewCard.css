@@ -1,3 +1,4 @@
+/* ── Reviews grid (shared by page + home strip) ── */
 .reviews-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -14,51 +15,94 @@
   }
 }
 
+/* ── Card ── */
 .review-card {
   display: flex;
   flex-direction: column;
-  gap: 12px;
   height: 100%;
   margin: 0;
-  padding: 18px 20px 16px;
-  border: 1px solid var(--color-border);
+  padding: 0;
   border-radius: var(--radius);
   background: var(--color-surface);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
 }
 
-/* a quote mark instead of a fake star rating */
+.review-card:hover {
+  box-shadow: var(--shadow-lift);
+  transform: translateY(-2px);
+}
+
+/* orange accent stripe across the top */
 .review-card::before {
-  content: '”';
+  content: '';
   display: block;
-  margin-bottom: -18px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-orange), #ffb06b);
+  flex-shrink: 0;
+}
+
+/* card body */
+.review-card__inner {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 0;
+  padding: 16px 18px 14px;
+}
+
+/* big decorative quote mark */
+.review-card__mark {
+  display: block;
+  margin-bottom: -6px;
   color: var(--color-orange);
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 700;
   line-height: 1;
+  opacity: 0.85;
 }
 
 .review-card__text {
   flex: 1;
-  margin: 0;
+  margin: 0 0 14px;
   font-size: var(--fs-base);
-  line-height: 1.55;
+  line-height: 1.6;
+  color: var(--color-text);
 }
 
 .review-card__meta {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 4px 12px;
-  padding-top: 12px;
+  gap: 6px 10px;
+  padding-top: 10px;
   border-top: 1px solid var(--color-border);
-  color: var(--color-text-muted);
-  font-size: var(--fs-sm);
 }
 
 .review-card__product {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--color-cream);
+  border: 1px solid var(--color-border);
   color: var(--color-text);
+  font-size: var(--fs-sm);
   font-weight: 600;
-  text-decoration: underline;
-  text-underline-offset: 4px;
+  text-decoration: none;
+  transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+
+.review-card__product:hover {
+  background: var(--color-orange);
+  border-color: var(--color-orange);
+  color: var(--color-dark);
+}
+
+.review-card__date {
+  margin-left: auto;
+  color: var(--color-text-muted);
+  font-size: var(--fs-sm);
 }

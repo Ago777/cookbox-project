@@ -12,23 +12,26 @@ export function ReviewCard({ review }) {
 
   return (
     <figure className="review-card">
-      <blockquote className="review-card__text">{pick(review.text)}</blockquote>
-      <figcaption className="review-card__meta">
-        {product && (
-          <Link className="review-card__product" to={`/product/${product.slug}`}>
-            {pick(product.name)}
-          </Link>
-        )}
-        {review.date && (
-          <time dateTime={review.date}>
-            {new Date(review.date).toLocaleDateString(DATE_LOCALE[lang], {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-            })}
-          </time>
-        )}
-      </figcaption>
+      <div className="review-card__inner">
+        <span className="review-card__mark" aria-hidden="true">"</span>
+        <blockquote className="review-card__text">{pick(review.text)}</blockquote>
+        <figcaption className="review-card__meta">
+          {product && (
+            <Link className="review-card__product" to={`/product/${product.slug}`}>
+              {pick(product.name)}
+            </Link>
+          )}
+          {review.date && (
+            <time className="review-card__date" dateTime={review.date}>
+              {new Date(review.date).toLocaleDateString(DATE_LOCALE[lang], {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })}
+            </time>
+          )}
+        </figcaption>
+      </div>
     </figure>
   )
 }
