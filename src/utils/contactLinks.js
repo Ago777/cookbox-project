@@ -34,7 +34,11 @@ const ORDER_HREF = {
   whatsapp: (v, text) => `https://wa.me/${v}?text=${encodeURIComponent(text)}`,
   viber: (v) => `viber://chat?number=${encodeURIComponent(v)}`,
   telegram: (v) => `https://t.me/${v}`,
-  facebook: (v, text) => `https://m.me/${handleFromUrl(v)}?text=${encodeURIComponent(text)}`,
+  // The standard "message us" link used by websites: https://m.me/<page>.
+  // Tested on a phone: it asks "Open in Messenger" once (Facebook's own screen)
+  // and then opens the real page chat. messenger.com/t/<id> opened an empty chat
+  // where sending fails, so do not use it.
+  facebook: (v) => `https://m.me/${handleFromUrl(v)}`,
   instagram: (v) => `https://ig.me/m/${handleFromUrl(v)}`,
 }
 

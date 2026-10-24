@@ -36,3 +36,25 @@
 .brand-badge--instagram {
   background: #ff0069;
 }
+
+/* Filled buttons in the app's own colour: white logo + white text.
+   Used by every Facebook / Instagram / ... button on the site. */
+.brand-fill--whatsapp {
+  background: #1fa855;
+}
+
+.brand-fill--viber {
+  background: #7360f2;
+}
+
+.brand-fill--telegram {
+  background: #1b8fc7;
+}
+
+.brand-fill--facebook {
+  background: #0866ff;
+}
+
+.brand-fill--instagram {
+  background: linear-gradient(135deg, #f58529, #dd2a7b 55%, #8134af);
+}

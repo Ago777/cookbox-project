@@ -25,8 +25,8 @@ export const reviews = [
   {
     id: 'blinchik-1',
     text: {
-      // Customer's own words; only the typing slips were corrected.
-      hy: 'Շատ նուրբ ու համեղ բլինչիկներ էին։ Շնորհակալություն։ Պելմենիները առայժմ չենք փորձել։ ☺️',
+      // Kept exactly as the customer wrote it, spelling slips included. Do not "fix" it.
+      hy: 'Շատ նուրբ ու համեղ բլինչիկներեն։ Շնորհակալություն։ Պելմենիները առայժմ չէնք փորցել։ ☺️',
       ru: 'Очень нежные и вкусные блинчики. Спасибо. Пельмени пока не пробовали. ☺️',
     },
     product: 'blinchik',

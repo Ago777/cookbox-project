@@ -41,13 +41,7 @@ export function HomePage() {
       </section>
 
       <section id="products" className="container section">
-        <div className="section-head">
-          <h2 className="section-title">{t('products.title')}</h2>
-          <a className="menu-download" href={asset('/cookbox-menu.jpg')} download="CookBox-menu.jpg">
-            <Icon name="download" />
-            {t('menu.download')}
-          </a>
-        </div>
+        <h2 className="section-title">{t('products.title')}</h2>
         <ul className="product-grid">
           {products.map((product) => (
             <li key={product.slug}>
@@ -55,6 +49,13 @@ export function HomePage() {
             </li>
           ))}
         </ul>
+
+        <p className="menu-download-wrap">
+          <a className="menu-download" href={asset('/cookbox-menu.jpg')} download="CookBox-menu.jpg">
+            <Icon name="download" />
+            {t('menu.download')}
+          </a>
+        </p>
       </section>
 
       {topReviews.length > 0 && (

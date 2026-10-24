@@ -1,17 +1,15 @@
 import { Link } from 'react-router-dom'
 import { useLanguage } from '../i18n/useLanguage'
-import { useOrderLinks } from '../utils/useOrderLinks'
 import { formatPrice } from '../utils/format'
 import { ProductImage } from './ProductImage'
 import './ProductCard.css'
 
-// Photo + name open the product page; the orange button opens a chat with the
-// product name already typed in, so ordering is one tap.
+// The whole card opens the product page; the orange button says «Details».
+// Ordering happens on the product page and with the floating chat buttons.
 export function ProductCard({ product }) {
   const { t, pick } = useLanguage()
   const name = pick(product.name)
   const size = pick(product.size)
-  const order = useOrderLinks(name)[0]
 
   return (
     <article className="product-card">
@@ -32,11 +30,9 @@ export function ProductCard({ product }) {
 
       <div className="product-card__footer">
         <span className="product-card__price">{formatPrice(product.price)}</span>
-        {order && (
-          <a className="product-card__cta" href={order.href} target="_blank" rel="noopener noreferrer">
-            {t('product.order')}
-          </a>
-        )}
+        <Link to={`/product/${product.slug}`} className="product-card__cta">
+          {t('product.details')}
+        </Link>
       </div>
     </article>
   )

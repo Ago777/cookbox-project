@@ -1,11 +1,8 @@
-/* Top row of the app shell — never scrolls away.
-   Dark like the desktop contact bar, so the page is framed top and bottom in
-   brand black and white is left to the product cards only.
-   TO GO BACK TO A WHITE HEADER: set background to var(--color-surface) here,
-   switch the logo import in Header.jsx back to logo-color.svg, and delete the
-   "dark header" block further down. */
+/* Top of the page — sticks to the top while the page scrolls.
+   Dark, like the brand; white is left to the product cards. */
 .site-header {
-  position: relative;
+  position: sticky;
+  top: 0;
   z-index: 40;
   background: var(--color-dark);
   color: #fff;
@@ -15,93 +12,167 @@
 .site-header::before {
   content: '';
   display: block;
-  height: 4px;
+  height: 3px;
   background: linear-gradient(90deg, var(--color-orange), #ffb06b 55%, var(--color-orange));
 }
 
-/* phones: logo + language on top, the 4 nav links as a row below.
-   Not sticky here — on a small screen the space goes to products. */
-/* Kept deliberately short: this bar is fixed, so every pixel here is taken
-   from the products for the whole visit. */
+/* phones: logo · language · burger, one slim row (about 52px) */
 .site-header__inner {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-areas:
-    'logo lang'
-    'nav  nav';
+  position: relative;
+  z-index: 2;
+  display: flex;
   align-items: center;
-  gap: 6px 12px;
-  padding-block: 7px 8px;
+  gap: 10px;
+  min-height: 52px;
+  padding-block: 4px;
 }
 
 .site-header__logo {
-  grid-area: logo;
   display: inline-flex;
   align-items: center;
-  gap: 9px;
-  justify-self: start;
+  gap: 8px;
+  margin-right: auto;
   min-height: 40px;
   text-decoration: none;
 }
 
 .site-header__logo img {
-  width: 34px;
+  width: 30px;
   height: auto;
 }
 
 .site-header__name {
-  font-size: 1.1875rem;
+  font-size: 1.125rem;
   font-weight: 700;
   letter-spacing: -0.01em;
 }
 
+/* ---------- burger button ---------- */
+.burger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 40px;
+  padding: 0;
+  border: 1.5px solid rgb(255 255 255 / 0.4);
+  border-radius: 10px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.burger:hover {
+  background: rgb(255 255 255 / 0.12);
+}
+
+.burger__bars,
+.burger__bars::before,
+.burger__bars::after {
+  display: block;
+  width: 20px;
+  height: 2px;
+  border-radius: 2px;
+  background: #fff;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.burger__bars {
+  position: relative;
+}
+
+.burger__bars::before,
+.burger__bars::after {
+  content: '';
+  position: absolute;
+  left: 0;
+}
+
+.burger__bars::before {
+  top: -6px;
+}
+
+.burger__bars::after {
+  top: 6px;
+}
+
+/* open → an X */
+.is-open .burger__bars {
+  background: transparent;
+}
+
+.is-open .burger__bars::before {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.is-open .burger__bars::after {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* ---------- the menu panel (phones and small tablets) ---------- */
 .site-header__nav {
-  grid-area: nav;
-  min-width: 0;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  z-index: 2;
+  display: none;
+  padding: 8px var(--gutter) 14px;
+  border-top: 1px solid rgb(255 255 255 / 0.12);
+  background: var(--color-dark);
+  box-shadow: 0 16px 24px rgb(0 0 0 / 0.35);
 }
 
-.site-header__lang {
-  grid-area: lang;
+.is-open .site-header__nav {
+  display: block;
+  animation: menu-in 0.18s ease-out;
 }
 
-/* 5 links on a phone: 3 columns × 2 rows keeps the header the same height
-   as the old 4-link 2×2 grid, and nothing is hidden behind a hamburger. */
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+/* tap anywhere below the menu to close it */
+.nav-backdrop {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100vh;
+  padding: 0;
+  border: 0;
+  background: rgb(0 0 0 / 0.45);
+  cursor: default;
+}
+
 .nav-list {
   display: grid;
-  /* the middle column is wider: «Մեր ուտեստները» is the longest label */
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr) minmax(0, 1fr);
-  gap: 5px;
+  gap: 4px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-/* last row has 2 items — let them share the full width */
-.nav-list li:nth-last-child(2) {
-  grid-column: span 2;
-}
-
 .nav-link {
   display: flex;
   align-items: center;
-  justify-content: center;
-  min-height: 36px;
-  padding: 4px 8px;
-  border-radius: 999px;
-  background: rgb(255 255 255 / 0.1);
+  min-height: 46px;
+  padding: 6px 14px;
+  border-radius: 10px;
   color: #fff;
-  font-size: 0.875rem;
+  font-size: var(--fs-base);
   font-weight: 600;
   line-height: 1.2;
-  white-space: nowrap;
   text-decoration: none;
-  transition:
-    background-color 0.15s ease,
-    color 0.15s ease;
 }
 
 .nav-link:hover {
-  background: rgb(255 255 255 / 0.18);
+  background: rgb(255 255 255 / 0.12);
 }
 
 .nav-link.active {
@@ -109,26 +180,6 @@
   color: var(--color-dark);
 }
 
-/* "Մեր ուտեստները" is the longest label: tighten a little on 360–400px phones */
-@media (max-width: 400px) {
-  .nav-link {
-    padding-inline: 3px;
-    font-size: 0.78rem;
-  }
-}
-
-@media (max-width: 359px) {
-  .nav-list {
-    gap: 5px;
-  }
-
-  .nav-link {
-    padding-inline: 2px;
-    font-size: 0.72rem;
-  }
-}
-
-/* tablet + desktop: one row, stays on screen while the content scrolls */
 /* ---------- dark header: pieces that must flip for a dark background ---------- */
 .site-header :focus-visible {
   outline-color: var(--color-orange);
@@ -140,14 +191,17 @@
 }
 
 .site-header .lang-switcher__btn {
+  min-width: 40px;
+  min-height: 32px;
+  padding: 0 8px;
   color: #fff;
+  font-size: 0.8125rem;
 }
 
 .site-header .lang-switcher__btn[aria-pressed='true'] {
   background: #fff;
   color: var(--color-dark);
 }
-/* ---------- end dark header ---------- */
 
 @media (min-width: 768px) {
   .site-header {
@@ -155,52 +209,84 @@
   }
 
   .site-header__inner {
-    grid-template-columns: auto 1fr auto;
-    grid-template-areas: 'logo nav lang';
-    gap: 24px;
-    min-height: var(--header-h);
-    padding-block: 8px;
+    min-height: calc(var(--header-h) - 3px);
+    gap: 14px;
   }
 
   .site-header__logo img {
-    width: 50px;
+    width: 44px;
   }
 
   .site-header__name {
-    font-size: 1.5rem;
+    font-size: 1.375rem;
+  }
+
+  .site-header .lang-switcher__btn {
+    min-height: 36px;
+    font-size: var(--fs-sm);
+  }
+}
+
+/* ---------- desktop: links sit in the header row, no burger ---------- */
+@media (min-width: 1100px) {
+  .burger,
+  .nav-backdrop {
+    display: none;
+  }
+
+  .site-header__inner {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas: 'logo nav lang';
+    gap: 20px;
+  }
+
+  .site-header__logo {
+    grid-area: logo;
+    margin-right: 0;
+  }
+
+  .site-header__lang {
+    grid-area: lang;
+  }
+
+  .site-header__nav {
+    position: static;
+    display: block;
+    grid-area: nav;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
   }
 
   .nav-list {
     display: flex;
     justify-content: center;
-    gap: 4px;
+    gap: 2px;
   }
 
-  /* text links with an orange underline instead of filled pills —
-     lighter, and the active page is still obvious */
+  /* text links with an orange underline instead of filled pills */
   .nav-link {
     position: relative;
     min-height: var(--tap);
-    padding: 8px 16px 10px;
+    padding: 8px 10px 10px;
     border-radius: var(--radius-sm);
-    background: transparent;
-    font-size: var(--fs-base);
+    font-size: var(--fs-sm);
+    white-space: nowrap;
   }
 
   .nav-link::after {
     content: '';
     position: absolute;
-    right: 16px;
+    right: 10px;
     bottom: 4px;
-    left: 16px;
+    left: 10px;
     height: 3px;
     border-radius: 2px;
     background: transparent;
     transition: background-color 0.15s ease;
-  }
-
-  .nav-link:hover {
-    background: rgb(255 255 255 / 0.12);
   }
 
   .nav-link:hover::after {
@@ -218,28 +304,22 @@
   }
 }
 
-/* tablet and small laptop: five Armenian labels plus logo and language only
-   fit with tighter spacing */
-@media (min-width: 768px) and (max-width: 1199px) {
+@media (min-width: 1200px) {
   .site-header__inner {
-    gap: 12px;
-  }
-
-  .site-header__name {
-    font-size: 1.25rem;
+    gap: 24px;
   }
 
   .nav-list {
-    gap: 0;
+    gap: 4px;
   }
 
   .nav-link {
-    padding: 8px 4px 10px;
-    font-size: 0.875rem;
+    padding-inline: 16px;
+    font-size: var(--fs-base);
   }
 
   .nav-link::after {
-    right: 4px;
-    left: 4px;
+    right: 16px;
+    left: 16px;
   }
 }

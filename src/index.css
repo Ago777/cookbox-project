@@ -29,12 +29,13 @@
     'Segoe UI', sans-serif;
 
   /* few levels, big jumps between them */
-  --fs-sm: 0.9375rem; /* 15px — secondary text */
-  --fs-base: 1.0625rem; /* 17px — body, on phones too */
-  --fs-lg: 1.125rem; /* 18px — product names */
-  --fs-price: 1.25rem; /* 20px */
-  --fs-h1: clamp(1.5rem, 1.1rem + 1.9vw, 2.5rem);
-  --fs-h2: clamp(1.375rem, 1.05rem + 1.5vw, 2.125rem);
+  /* phone sizes; tablets and up get the larger set in the 768px block below */
+  --fs-sm: 0.875rem; /* 14px — secondary text */
+  --fs-base: 1rem; /* 16px — body */
+  --fs-lg: 1.0625rem; /* 17px — product names */
+  --fs-price: 1.125rem; /* 18px */
+  --fs-h1: clamp(1.375rem, 0.9rem + 2.2vw, 2.5rem);
+  --fs-h2: clamp(1.25rem, 0.95rem + 1.5vw, 2.125rem);
 
   --radius: 16px;
   --radius-sm: 10px;
@@ -49,21 +50,25 @@
   --container: 1360px;
   --gutter: 16px;
   --tap: 44px;
-  --btn-h: 48px;
-  --header-h: 68px;
-  --bar-h: 64px;
+  --btn-h: 44px;
+  --header-h: 56px;
 }
 
 @media (min-width: 768px) {
   :root {
     --gutter: 24px;
+    --fs-sm: 0.9375rem; /* 15px */
+    --fs-base: 1.0625rem; /* 17px */
+    --fs-lg: 1.125rem; /* 18px */
+    --fs-price: 1.25rem; /* 20px */
+    --btn-h: 48px;
+    --header-h: 68px;
   }
 }
 
 @media (min-width: 1024px) {
   :root {
     --fs-lg: 1.1875rem; /* 19px */
-    --bar-h: 68px;
   }
 }
 
@@ -80,21 +85,15 @@
   box-sizing: border-box;
 }
 
-html,
-body,
-#root {
-  height: 100%;
-}
-
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  /* the sticky header must not cover the top of a section we scroll to */
+  scroll-padding-top: calc(var(--header-h) + 12px);
 }
 
 body {
   margin: 0;
-  /* the app shell owns the scrolling, so the page itself never scrolls */
-  overflow: hidden;
   font-family: var(--font-sans);
   font-size: var(--fs-base);
   line-height: 1.55;
@@ -102,6 +101,11 @@ body {
   background: var(--color-bg);
   -webkit-font-smoothing: antialiased;
   overflow-wrap: break-word;
+}
+
+/* a photo viewer is open: freeze the page behind it */
+body:has(dialog[open]) {
+  overflow: hidden;
 }
 
 img {
@@ -148,27 +152,19 @@ button {
 }
 
 /* ---------- app shell ---------- */
-/* Header on top, contact bar at the bottom, one scrolling column between
-   them. dvh so the shell follows the phone browser's shrinking toolbar. */
+/* The PAGE scrolls (not an inner box), so phone browsers can shrink their own
+   toolbars while you scroll. The header sticks to the top and the contact bar
+   is fixed to the bottom; the content leaves room for it. */
 .app {
   display: flex;
   flex-direction: column;
-  height: 100dvh;
-}
-
-.app > .site-header,
-.app > .contact-bar {
-  flex: 0 0 auto;
+  min-height: 100dvh;
 }
 
 .app__scroll {
-  flex: 1 1 auto;
-  min-height: 0;
-  overflow-y: auto;
-  overflow-x: hidden;
-  overscroll-behavior: contain;
-  scroll-padding-top: 12px;
-  -webkit-overflow-scrolling: touch;
+  flex: 1 0 auto;
+  /* room for the two floating order buttons */
+  padding-bottom: calc(110px + env(safe-area-inset-bottom));
 }
 
 /* ---------- layout helpers ---------- */
@@ -182,7 +178,7 @@ button {
 /* gaps between sections are much larger than gaps inside a card —
    that difference is most of what makes a layout feel designed */
 .section {
-  padding-block: 36px;
+  padding-block: 26px;
 }
 
 @media (min-width: 1024px) {
@@ -210,7 +206,7 @@ button {
   justify-content: center;
   gap: 8px;
   min-height: var(--btn-h);
-  padding: 0 20px;
+  padding: 0 18px;
   border: 2px solid transparent;
   border-radius: 999px;
   font-size: var(--fs-base);

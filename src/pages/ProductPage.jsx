@@ -73,11 +73,37 @@ function ProductDetails({ product }) {
         </div>
 
         <div>
-          <h1 className="product-detail__title">{name}</h1>
+          <div className="product-detail__head">
+            <h1 className="product-detail__title">{name}</h1>
+            {/* phones: price and size sit next to the name */}
+            <p className="product-head__meta">
+              <strong>{formatPrice(product.price)}</strong>
+              {size && <span>{size}</span>}
+            </p>
+          </div>
           {size && <p className="product-detail__size">{size}</p>}
-          <p>
+          <p className="product-detail__pricerow">
             <span className="price product-detail__price">{formatPrice(product.price)}</span>
           </p>
+
+          {/* phones: a hint and two order buttons */}
+          <div className="product-order">
+            <p className="product-order__hint">{t('product.orderHint')}</p>
+            <div className="product-order__btns">
+              {links.map((link) => (
+                <a
+                  key={link.id}
+                  className={`product-order__btn brand-fill--${link.id}`}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Icon name={link.id} size={18} />
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          </div>
 
           {sections.map((s) => (
             <section key={s.key} className="info-section">
@@ -86,7 +112,7 @@ function ProductDetails({ product }) {
             </section>
           ))}
 
-          <section className="contact-card">
+          <section className="contact-card product-contact">
             <h2>{t('contact.title')}</h2>
             <p>{t('contact.text')}</p>
             <ContactButtons links={links} />

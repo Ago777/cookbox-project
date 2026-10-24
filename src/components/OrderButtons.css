@@ -1,0 +1,57 @@
+/* two floating order buttons, bottom-right, on every page */
+.order-fab {
+  position: fixed;
+  right: max(12px, env(safe-area-inset-right));
+  bottom: calc(12px + env(safe-area-inset-bottom));
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+}
+
+.order-fab__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 4px 16px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgb(23 22 21 / 0.3);
+  color: #fff;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+  text-decoration: none;
+  transition:
+    transform var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
+}
+
+.order-fab__btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgb(23 22 21 / 0.34);
+}
+
+.order-fab__btn svg {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+/* phones: just «Order», the round logo already says which app */
+@media (max-width: 479px) {
+  .order-fab__via {
+    display: none;
+  }
+}
+
+/* product page on a phone: the same two buttons are already in the page, right
+   under the photo, so the floating ones would only sit on top of them */
+@media (max-width: 639px) {
+  .order-fab--product {
+    display: none;
+  }
+}

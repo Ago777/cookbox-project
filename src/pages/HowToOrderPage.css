@@ -9,14 +9,14 @@
 
 .order-head__title {
   margin: 0 0 6px;
-  font-size: clamp(1.5rem, 5vw, 2rem);
+  font-size: clamp(1.375rem, 5vw, 2rem);
   letter-spacing: -0.02em;
 }
 
 .order-head__lead {
   margin: 0;
   color: var(--color-text-muted);
-  font-size: var(--fs-lg);
+  font-size: var(--fs-base);
 }
 
 /* ── Steps: a vertical timeline joined by an orange line ── */
@@ -28,11 +28,11 @@
 .step--rich {
   position: relative;
   display: grid;
-  grid-template-columns: 56px 1fr;
-  gap: 16px;
+  grid-template-columns: 48px 1fr;
+  gap: 14px;
   align-items: start;
   margin-bottom: 14px;
-  padding: 18px 18px 18px 16px;
+  padding: 14px 14px 14px 12px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   background: var(--color-surface);
@@ -43,8 +43,8 @@
 .step--rich:not(:last-child)::after {
   content: '';
   position: absolute;
-  left: 43px;
-  top: 74px;
+  left: 35px;
+  top: 62px;
   bottom: -16px;
   width: 2px;
   background: repeating-linear-gradient(to bottom, var(--color-orange) 0 6px, transparent 6px 12px);
@@ -56,8 +56,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 56px;
-  height: 56px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--color-orange), #ffb06b);
   color: var(--color-dark);
@@ -65,8 +65,8 @@
 }
 
 .step__icon svg {
-  width: 26px;
-  height: 26px;
+  width: 22px;
+  height: 22px;
 }
 
 /* small step number badge on the circle */
@@ -83,8 +83,8 @@
 }
 
 .step--rich .step__title {
-  margin: 4px 0 4px;
-  font-size: 1.1875rem;
+  margin: 2px 0 4px;
+  font-size: 1.0625rem;
 }
 
 .step--rich .step__text {
@@ -116,8 +116,8 @@
 }
 
 .delivery-info__title {
-  margin: 0 0 12px;
-  font-size: 1.25rem;
+  margin: 0 0 10px;
+  font-size: 1.125rem;
 }
 
 .delivery-chips {
@@ -161,7 +161,7 @@
 /* ── CTA ── */
 .order-cta {
   margin-top: 28px;
-  padding: 22px 18px;
+  padding: 18px 16px;
   border: 1px solid #f5cfa9;
   border-radius: var(--radius);
   background: linear-gradient(135deg, #fff3e6 0%, #ffe3c7 100%);
@@ -170,11 +170,11 @@
 
 .order-cta__title {
   margin: 0 0 4px;
-  font-size: 1.375rem;
+  font-size: 1.1875rem;
 }
 
 .order-cta__desc {
-  margin: 0 0 16px;
+  margin: 0 0 12px;
   color: var(--color-text);
   font-size: var(--fs-base);
 }

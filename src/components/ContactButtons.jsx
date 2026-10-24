@@ -25,10 +25,13 @@ export function ContactButtons({ links = messengerLinks }) {
         <ul className="contact-buttons__list">
           {links.map((link) => (
             <li key={link.id}>
-              <a className="contact-link" href={link.href} target="_blank" rel="noopener noreferrer">
-                <span className={`brand-badge brand-badge--${link.id}`}>
-                  <Icon name={link.id} />
-                </span>
+              <a
+                className={`contact-link brand-fill--${link.id}`}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Icon name={link.id} size={20} />
                 {link.label}
               </a>
             </li>

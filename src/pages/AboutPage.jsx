@@ -1,6 +1,8 @@
+import { ContactButtons } from '../components/ContactButtons'
 import { site } from '../data/site'
 import { useLanguage } from '../i18n/useLanguage'
 import { asset } from '../utils/asset'
+import { messengerLinks } from '../utils/contactLinks'
 import { usePageTitle } from '../utils/usePageTitle'
 import './pages.css'
 import './AboutPage.css'
@@ -41,6 +43,11 @@ const ICONS = {
     </>,
   ),
 }
+
+// our own pages (profiles), not the chat links
+const PAGE_LINKS = messengerLinks
+  .filter((l) => l.id === 'facebook' || l.id === 'instagram')
+  .map((l) => ({ ...l, label: `CookBox ${l.label}` }))
 
 const PHOTOS = ['kievyan-a', 'nagets-a', 'pelmeni-a']
 
@@ -147,6 +154,14 @@ export function AboutPage() {
             </ul>
           )}
         </section>
+
+        {/* our pages */}
+        {PAGE_LINKS.length > 0 && (
+          <section className="about-pages">
+            <h2 className="about-pages__title">{t('about.pages')}</h2>
+            <ContactButtons links={PAGE_LINKS} />
+          </section>
+        )}
       </div>
     </div>
   )

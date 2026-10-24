@@ -3,7 +3,20 @@ import { findProduct } from '../data/products'
 import { useLanguage } from '../i18n/useLanguage'
 import './ReviewCard.css'
 
-const DATE_LOCALE = { hy: 'hy-AM', ru: 'ru-RU' }
+const HY_MONTHS = [
+  'հունվարի', 'փետրվարի', 'մարտի', 'ապրիլի', 'մայիսի', 'հունիսի',
+  'հուլիսի', 'օգոստոսի', 'սեպտեմբերի', 'հոկտեմբերի', 'նոյեմբերի', 'դեկտեմբերի',
+]
+
+// Browsers often lack Armenian date data and fall back to English, so
+// the Armenian date is built by hand.
+function formatDate(iso, lang) {
+  const date = new Date(iso)
+  if (lang === 'hy') {
+    return `${date.getUTCDate()} ${HY_MONTHS[date.getUTCMonth()]}, ${date.getUTCFullYear()}`
+  }
+  return date.toLocaleDateString('ru-RU', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })
+}
 
 // Shared by the Reviews page and the short strip on the home page.
 export function ReviewCard({ review }) {
@@ -23,11 +36,7 @@ export function ReviewCard({ review }) {
           )}
           {review.date && (
             <time className="review-card__date" dateTime={review.date}>
-              {new Date(review.date).toLocaleDateString(DATE_LOCALE[lang], {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-              })}
+              {formatDate(review.date, lang)}
             </time>
           )}
         </figcaption>
