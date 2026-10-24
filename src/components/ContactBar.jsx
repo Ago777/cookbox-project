@@ -1,4 +1,4 @@
-import logo from '../assets/brand/logo-color-on-dark.svg'
+import logo from '../assets/brand/logo-color.svg'
 import { contacts } from '../data/contacts'
 import { useLanguage } from '../i18n/useLanguage'
 import { messengerLinks, phoneHref } from '../utils/contactLinks'
@@ -6,14 +6,18 @@ import { Icon } from './Icon'
 import './brand-badge.css'
 import './ContactBar.css'
 
-// Phones only have room for the chat apps; desktop shows every channel.
-const PHONE_CHANNELS = ['whatsapp', 'viber', 'telegram']
+// A phone only has room for a few buttons. messengerLinks is already ordered
+// chat apps first, so take whatever exists — never a hardcoded list, or the
+// bar ends up empty when those channels are not filled in yet.
+const PHONE_MAX = 3
 
-// Fixed bottom bar on every screen size: one tap to call or open a chat.
-// On desktop it is also the footer (logo + ©), so only the content scrolls.
+// Fixed bottom row of the app shell: one tap to call or open a chat.
+// On desktop it is also the footer (logo + ©).
 export function ContactBar() {
   const { t } = useLanguage()
   if (!phoneHref && messengerLinks.length === 0) return null
+
+  const onPhone = new Set(messengerLinks.slice(0, PHONE_MAX).map((link) => link.id))
 
   return (
     <div className="contact-bar">
@@ -23,7 +27,10 @@ export function ContactBar() {
           <span>© {new Date().getFullYear()} CookBox</span>
         </div>
 
-        <nav className="contact-bar__actions" aria-label={t('contact.bar')}>
+        <nav
+          className={`contact-bar__actions${phoneHref ? '' : ' contact-bar__actions--no-call'}`}
+          aria-label={t('contact.bar')}
+        >
           {phoneHref && (
             <a className="contact-bar__call" href={phoneHref}>
               <Icon name="phone" size={20} />
@@ -34,7 +41,7 @@ export function ContactBar() {
           {messengerLinks.map((link) => (
             <a
               key={link.id}
-              className={`contact-bar__chat${PHONE_CHANNELS.includes(link.id) ? '' : ' contact-bar__chat--desktop'}`}
+              className={`contact-bar__chat${onPhone.has(link.id) ? '' : ' contact-bar__chat--desktop'}`}
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"

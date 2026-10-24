@@ -6,38 +6,52 @@
    orange is always dark.
    ------------------------------------------------------------------ */
 :root {
+  /* Orange is rationed on purpose: price accent, the delivery badge, the
+     active nav item and primary buttons. Everything else stays neutral,
+     otherwise nothing on the page stands out. */
   --color-orange: #ff8528;
   --color-orange-hover: #ff9a4d;
   --color-orange-tint: #ffe9d6;
   --color-dark: #171615;
   --color-text: #171615;
+  /* 7.6:1 on the page background — a lighter grey would be more fashionable
+     but fails the AAA target that 40+/50+ eyes actually need. */
   --color-text-muted: #57504a;
-  --color-bg: #fff9f4;
-  --color-surface: #ffffff;
-  --color-cream: #f6e6d9;
-  --color-border: #eadccf;
+
+  /* warm neutral ramp, same hue, dropping chroma as it lightens */
+  --color-surface: #ffffff; /* cards */
+  --color-bg: #f8efe6; /* page — deep enough that white cards read as cards */
+  --color-cream: #f1e4d8; /* sunken band */
+  --color-border: #e7dacd; /* hairline */
+  --color-border-strong: #d9c6b4;
 
   --font-sans: 'Poppins', 'Noto Sans Armenian', 'Noto Sans', system-ui, -apple-system,
     'Segoe UI', sans-serif;
 
-  --fs-xs: 0.8125rem; /* 13px — tiny labels under icons only */
+  /* few levels, big jumps between them */
   --fs-sm: 0.9375rem; /* 15px — secondary text */
-  --fs-base: 1rem; /* 16px — body */
-  --fs-lg: 1.0625rem; /* 17px — product names */
-  --fs-price: 1.0625rem; /* 17px */
-  --fs-h1: clamp(1.375rem, 1rem + 1.6vw, 2.125rem);
-  --fs-h2: clamp(1.25rem, 1rem + 1vw, 1.625rem);
+  --fs-base: 1.0625rem; /* 17px — body, on phones too */
+  --fs-lg: 1.125rem; /* 18px — product names */
+  --fs-price: 1.25rem; /* 20px */
+  --fs-h1: clamp(1.5rem, 1.1rem + 1.9vw, 2.5rem);
+  --fs-h2: clamp(1.375rem, 1.05rem + 1.5vw, 2.125rem);
 
-  --radius: 14px;
+  --radius: 16px;
   --radius-sm: 10px;
-  --shadow: 0 2px 12px rgb(23 22 21 / 0.07);
+  /* one soft layered shadow family — never a hard grey one */
+  --shadow-sm: 0 1px 2px rgb(23 22 21 / 0.04);
+  --shadow: 0 1px 2px rgb(23 22 21 / 0.04), 0 8px 24px rgb(23 22 21 / 0.06);
+  --shadow-lift: 0 2px 4px rgb(23 22 21 / 0.05), 0 14px 32px rgb(23 22 21 / 0.11);
+
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --dur: 0.18s;
 
   --container: 1360px;
   --gutter: 16px;
   --tap: 44px;
   --btn-h: 48px;
-  --header-h: 68px; /* sticky header height from 768px up */
-  --bar-h: 64px; /* fixed bottom contact bar */
+  --header-h: 68px;
+  --bar-h: 64px;
 }
 
 @media (min-width: 768px) {
@@ -48,9 +62,7 @@
 
 @media (min-width: 1024px) {
   :root {
-    --fs-base: 1.0625rem; /* 17px */
-    --fs-lg: 1.125rem; /* 18px */
-    --fs-price: 1.1875rem; /* 19px */
+    --fs-lg: 1.1875rem; /* 19px */
     --bar-h: 68px;
   }
 }
@@ -68,16 +80,21 @@
   box-sizing: border-box;
 }
 
+html,
+body,
+#root {
+  height: 100%;
+}
+
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
-  /* anchors (#products) land below the sticky header */
-  scroll-padding-top: calc(var(--header-h) + 12px);
 }
 
 body {
   margin: 0;
-  min-height: 100vh;
+  /* the app shell owns the scrolling, so the page itself never scrolls */
+  overflow: hidden;
   font-family: var(--font-sans);
   font-size: var(--fs-base);
   line-height: 1.55;
@@ -130,6 +147,30 @@ button {
   outline-offset: 3px;
 }
 
+/* ---------- app shell ---------- */
+/* Header on top, contact bar at the bottom, one scrolling column between
+   them. dvh so the shell follows the phone browser's shrinking toolbar. */
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+}
+
+.app > .site-header,
+.app > .contact-bar {
+  flex: 0 0 auto;
+}
+
+.app__scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  scroll-padding-top: 12px;
+  -webkit-overflow-scrolling: touch;
+}
+
 /* ---------- layout helpers ---------- */
 .container {
   width: 100%;
@@ -138,13 +179,15 @@ button {
   padding-inline: var(--gutter);
 }
 
+/* gaps between sections are much larger than gaps inside a card —
+   that difference is most of what makes a layout feel designed */
 .section {
-  padding-block: 24px;
+  padding-block: 36px;
 }
 
 @media (min-width: 1024px) {
   .section {
-    padding-block: 32px;
+    padding-block: 56px;
   }
 }
 

@@ -1,24 +1,41 @@
+import { Link } from 'react-router-dom'
 import { ProductCard } from '../components/ProductCard'
+import { ReviewCard } from '../components/ReviewCard'
 import { products } from '../data/products'
+import { reviews } from '../data/reviews'
 import { useLanguage } from '../i18n/useLanguage'
 import { asset } from '../utils/asset'
 import { usePageTitle } from '../utils/usePageTitle'
 import './pages.css'
 
+const HOME_REVIEWS = 3
+
 export function HomePage() {
   const { t } = useLanguage()
-  usePageTitle(t('hero.title'))
+  usePageTitle(t('home.pageTitle'))
+  const topReviews = reviews.slice(0, HOME_REVIEWS)
 
   return (
     <>
-      {/* Thin banner: products start right below it, so no "see products" button is needed */}
+      {/* Thin photo banner: a dark scrim keeps the text readable while the food
+          stays visible on the right. Products start right below it. */}
       <section className="container hero">
         <div className="hero__card">
+          <img
+            className="hero__bg"
+            src={asset('/hero.jpg')}
+            srcSet={`${asset('/hero-sm.jpg')} 900w, ${asset('/hero.jpg')} 1600w`}
+            sizes="100vw"
+            alt=""
+            width="1600"
+            height="600"
+            fetchPriority="high"
+          />
           <div className="hero__content">
             <h1 className="hero__title">{t('hero.title')}</h1>
             <p className="hero__text">{t('hero.text')}</p>
+            <p className="hero__chip hero__chip--accent">{t('hero.chipDelivery')}</p>
           </div>
-          <img className="hero__image" src={asset('/products/tolma.jpg')} alt="" width="573" height="343" />
         </div>
       </section>
 
@@ -32,6 +49,24 @@ export function HomePage() {
           ))}
         </ul>
       </section>
+
+      {topReviews.length > 0 && (
+        <section className="container section">
+          <div className="section-head">
+            <h2 className="section-title">{t('reviews.homeTitle')}</h2>
+            <Link className="section-link" to="/reviews">
+              {t('reviews.seeAll')}
+            </Link>
+          </div>
+          <ul className="reviews-grid">
+            {topReviews.map((review) => (
+              <li key={review.id}>
+                <ReviewCard review={review} />
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
     </>
   )
 }

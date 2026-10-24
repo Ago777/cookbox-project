@@ -1,5 +1,5 @@
 import { Link, NavLink } from 'react-router-dom'
-import logo from '../assets/brand/logo-color.svg'
+import logo from '../assets/brand/logo-color-on-dark.svg'
 import { useLanguage } from '../i18n/useLanguage'
 import { LanguageSwitcher } from './LanguageSwitcher'
 import './Header.css'
@@ -7,6 +7,8 @@ import './Header.css'
 const NAV = [
   { to: '/', key: 'nav.home', end: true },
   { to: '/about', key: 'nav.about' },
+  { to: '/how-to-order', key: 'nav.order' },
+  { to: '/reviews', key: 'nav.reviews' },
   { to: '/gallery', key: 'nav.gallery' },
 ]
 
@@ -18,11 +20,14 @@ export function Header() {
     <header className="site-header">
       <div className="container site-header__inner">
         <Link to="/" className="site-header__logo">
-          <img src={logo} alt="" width="44" height="41" />
-          <span>CookBox</span>
+          <img src={logo} alt="" width="52" height="49" />
+          <span className="site-header__wordmark">
+            <span className="site-header__name">CookBox</span>
+            <span className="site-header__tagline">{t('brand.tagline')}</span>
+          </span>
         </Link>
 
-        {/* No hamburger: only 3 links, so they are always visible */}
+        {/* No hamburger: only 4 links, so they are always visible */}
         <nav className="site-header__nav" aria-label={t('nav.label')}>
           <ul className="nav-list">
             {NAV.map((item) => (

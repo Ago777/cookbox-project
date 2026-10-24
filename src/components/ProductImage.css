@@ -1,6 +1,8 @@
+/* Product photos are shot portrait 4:5, so that is the default everywhere —
+   the whole dish shows with nothing cropped away. */
 .product-image {
   position: relative;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 4 / 5;
   overflow: hidden;
   background: var(--color-cream);
 }
@@ -26,7 +28,7 @@
     ),
     var(--color-cream);
   color: var(--color-text-muted);
-  font-size: var(--fs-xs);
+  font-size: var(--fs-sm);
   font-weight: 500;
   line-height: 1.3;
   text-align: center;

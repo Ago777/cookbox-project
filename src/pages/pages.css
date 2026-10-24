@@ -4,7 +4,8 @@
 }
 
 .section-title {
-  margin-bottom: 14px;
+  margin-bottom: 16px;
+  letter-spacing: -0.015em;
 }
 
 .narrow {
@@ -54,50 +55,106 @@
   }
 }
 
-/* ---------- home: thin banner ---------- */
+/* ---------- home: photo banner ---------- */
 .hero {
   padding-top: 12px;
 }
 
 .hero__card {
-  display: grid;
-  align-items: center;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 190px;
   overflow: hidden;
   border-radius: var(--radius);
-  background: var(--color-cream);
+  background: var(--color-dark);
+  isolation: isolate;
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 42%;
+}
+
+/* Dark scrim so white text stays readable on any part of the photo.
+   On phones it rises from the bottom; on wide screens it comes from the
+   left, leaving the food visible on the right. */
+.hero__card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    to top,
+    rgb(23 22 21 / 0.94) 0%,
+    rgb(23 22 21 / 0.82) 45%,
+    rgb(23 22 21 / 0.45) 75%,
+    rgb(23 22 21 / 0.25) 100%
+  );
 }
 
 .hero__content {
-  padding: 16px 18px;
+  padding: 16px;
+  color: #fff;
 }
 
 .hero__title {
   margin-bottom: 4px;
+  text-wrap: balance;
 }
 
 .hero__text {
   margin: 0;
-  color: var(--color-text-muted);
+  max-width: 48ch;
+  color: rgb(255 255 255 / 0.9);
+  font-size: var(--fs-sm);
 }
 
-.hero__image {
-  display: none;
+/* the offer that actually moves people to order */
+.hero__chip {
+  display: inline-flex;
+  align-items: center;
+  margin: 12px 0 0;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: var(--color-orange);
+  color: var(--color-dark);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  line-height: 1.3;
 }
 
 @media (min-width: 640px) {
   .hero__card {
-    grid-template-columns: minmax(0, 1fr) minmax(200px, 38%);
+    min-height: 300px;
+  }
+
+  .hero__card::after {
+    background: linear-gradient(
+      to right,
+      rgb(23 22 21 / 0.94) 0%,
+      rgb(23 22 21 / 0.86) 38%,
+      rgb(23 22 21 / 0.5) 70%,
+      rgb(23 22 21 / 0.15) 100%
+    );
   }
 
   .hero__content {
-    padding: 18px 28px;
+    max-width: 620px;
+    padding: 28px 32px;
   }
 
-  .hero__image {
-    display: block;
-    width: 100%;
-    height: 160px;
-    object-fit: cover;
+  .hero__text {
+    font-size: var(--fs-lg);
+  }
+
+  .hero__chip--extra {
+    display: inline-flex;
   }
 }
 
@@ -106,12 +163,13 @@
     padding-top: 20px;
   }
 
-  .hero__content {
-    padding: 20px 40px;
+  .hero__card {
+    min-height: 340px;
   }
 
-  .hero__image {
-    height: 190px;
+  .hero__content {
+    max-width: 680px;
+    padding: 36px 44px;
   }
 }
 
@@ -148,11 +206,12 @@
   /* photo stays in view while the text column scrolls */
   .product-detail__media {
     position: sticky;
-    top: calc(var(--header-h) + 16px);
+    top: 16px;
   }
 }
 
 .product-detail__image {
+  max-height: 72vh;
   border-radius: var(--radius);
 }
 
@@ -219,6 +278,30 @@
   margin: 0;
 }
 
+/* ---------- reviews ---------- */
+.reviews-intro {
+  margin-bottom: 20px;
+  color: var(--color-text-muted);
+}
+
+/* heading with a link on the right (home page strips) */
+.section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 16px;
+}
+
+.section-link {
+  min-height: var(--tap);
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  text-underline-offset: 4px;
+}
+
 /* ---------- gallery ---------- */
 .gallery-grid {
   display: grid;
@@ -256,6 +339,8 @@
 
 .gallery-item img {
   width: 100%;
+  /* height:auto is required, otherwise the img height attribute wins over aspect-ratio */
+  height: auto;
   aspect-ratio: 1;
   object-fit: cover;
   transition: transform 0.2s ease;

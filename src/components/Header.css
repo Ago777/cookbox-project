@@ -1,10 +1,28 @@
+/* Top row of the app shell — never scrolls away.
+   Dark like the desktop contact bar, so the page is framed top and bottom in
+   brand black and white is left to the product cards only.
+   TO GO BACK TO A WHITE HEADER: set background to var(--color-surface) here,
+   switch the logo import in Header.jsx back to logo-color.svg, and delete the
+   "dark header" block further down. */
 .site-header {
-  background: var(--color-surface);
-  border-bottom: 1px solid var(--color-border);
+  position: relative;
+  z-index: 40;
+  background: var(--color-dark);
+  color: #fff;
 }
 
-/* phones: logo + language on top, the 3 nav links as a full-width row below.
+/* thin brand line across the very top */
+.site-header::before {
+  content: '';
+  display: block;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-orange), #ffb06b 55%, var(--color-orange));
+}
+
+/* phones: logo + language on top, the 4 nav links as a row below.
    Not sticky here — on a small screen the space goes to products. */
+/* Kept deliberately short: this bar is fixed, so every pixel here is taken
+   from the products for the whole visit. */
 .site-header__inner {
   display: grid;
   grid-template-columns: 1fr auto;
@@ -13,24 +31,44 @@
     'nav  nav';
   align-items: center;
   gap: 6px 12px;
-  padding-block: 8px 10px;
+  padding-block: 7px 8px;
 }
 
 .site-header__logo {
   grid-area: logo;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 9px;
   justify-self: start;
-  min-height: var(--tap);
-  font-size: 1.1875rem;
-  font-weight: 700;
+  min-height: 40px;
   text-decoration: none;
 }
 
 .site-header__logo img {
-  width: 38px;
+  width: 34px;
   height: auto;
+}
+
+.site-header__wordmark {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.site-header__name {
+  font-size: 1.1875rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* the logo mark already spells COOKBOX, so the tagline adds the missing
+   information instead of repeating the name — desktop only */
+.site-header__tagline {
+  display: none;
+  margin-top: 2px;
+  color: rgb(255 255 255 / 0.68);
+  font-size: 0.75rem;
+  font-weight: 500;
 }
 
 .site-header__nav {
@@ -42,68 +80,84 @@
   grid-area: lang;
 }
 
+/* 5 links on a phone: 3 columns × 2 rows keeps the header the same height
+   as the old 4-link 2×2 grid, and nothing is hidden behind a hamburger. */
 .nav-list {
-  display: flex;
-  gap: 4px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 5px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.nav-list li {
-  flex: 1 1 auto;
+/* last row has 2 items — let them share the full width */
+.nav-list li:nth-last-child(2) {
+  grid-column: span 2;
 }
 
 .nav-link {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 40px;
+  min-height: 36px;
   padding: 4px 8px;
   border-radius: 999px;
-  background: var(--color-bg);
+  background: rgb(255 255 255 / 0.1);
+  color: #fff;
   font-size: 0.875rem;
   font-weight: 600;
   line-height: 1.2;
   white-space: nowrap;
   text-decoration: none;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
 }
 
 .nav-link:hover {
-  background: var(--color-cream);
+  background: rgb(255 255 255 / 0.18);
 }
 
 .nav-link.active {
   background: var(--color-orange);
+  color: var(--color-dark);
 }
 
-/* larger phones (400px+) have room for bigger nav text */
-@media (min-width: 400px) {
-  .nav-link {
-    padding-inline: 10px;
-    font-size: var(--fs-sm);
-  }
-}
-
-/* very narrow phones (320px): tighten so the 3 links still fit on one row */
 @media (max-width: 359px) {
   .nav-list {
-    gap: 3px;
+    gap: 5px;
   }
 
   .nav-link {
-    padding-inline: 5px;
     font-size: 0.8125rem;
   }
 }
 
 /* tablet + desktop: one row, stays on screen while the content scrolls */
+/* ---------- dark header: pieces that must flip for a dark background ---------- */
+.site-header :focus-visible {
+  outline-color: var(--color-orange);
+}
+
+.site-header .lang-switcher {
+  border-color: rgb(255 255 255 / 0.4);
+  background: transparent;
+}
+
+.site-header .lang-switcher__btn {
+  color: #fff;
+}
+
+.site-header .lang-switcher__btn[aria-pressed='true'] {
+  background: #fff;
+  color: var(--color-dark);
+}
+/* ---------- end dark header ---------- */
+
 @media (min-width: 768px) {
   .site-header {
-    position: sticky;
-    top: 0;
-    z-index: 40;
-    box-shadow: 0 1px 10px rgb(23 22 21 / 0.06);
+    box-shadow: 0 2px 14px rgb(23 22 21 / 0.18);
   }
 
   .site-header__inner {
@@ -111,30 +165,94 @@
     grid-template-areas: 'logo nav lang';
     gap: 24px;
     min-height: var(--header-h);
-    padding-block: 6px;
-  }
-
-  .site-header__logo {
-    font-size: 1.375rem;
+    padding-block: 8px;
   }
 
   .site-header__logo img {
-    width: 44px;
+    width: 50px;
+  }
+
+  .site-header__name {
+    font-size: 1.5rem;
   }
 
   .nav-list {
+    display: flex;
     justify-content: center;
-    gap: 6px;
+    gap: 4px;
   }
 
-  .nav-list li {
-    flex: 0 0 auto;
+  /* text links with an orange underline instead of filled pills —
+     lighter, and the active page is still obvious */
+  .nav-link {
+    position: relative;
+    min-height: var(--tap);
+    padding: 8px 16px 10px;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    font-size: var(--fs-base);
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    right: 16px;
+    bottom: 4px;
+    left: 16px;
+    height: 3px;
+    border-radius: 2px;
+    background: transparent;
+    transition: background-color 0.15s ease;
+  }
+
+  .nav-link:hover {
+    background: rgb(255 255 255 / 0.12);
+  }
+
+  .nav-link:hover::after {
+    background: rgb(255 255 255 / 0.35);
+  }
+
+  .nav-link.active {
+    background: transparent;
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .nav-link.active::after {
+    background: var(--color-orange);
+  }
+}
+
+/* tablet and small laptop: five Armenian labels plus logo and language only
+   fit with tighter spacing */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .site-header__inner {
+    gap: 12px;
+  }
+
+  .site-header__name {
+    font-size: 1.25rem;
+  }
+
+  .nav-list {
+    gap: 0;
   }
 
   .nav-link {
-    min-height: var(--tap);
-    padding: 6px 18px;
-    background: transparent;
-    font-size: var(--fs-base);
+    padding: 8px 4px 10px;
+    font-size: 0.875rem;
+  }
+
+  .nav-link::after {
+    right: 4px;
+    left: 4px;
+  }
+}
+
+/* the tagline only appears where there is room left after the five links */
+@media (min-width: 1200px) {
+  .site-header__tagline {
+    display: block;
   }
 }

@@ -1,25 +1,24 @@
 // ------------------------------------------------------------------
 // CONTACTS — edit this file to change every contact button on the site.
 // Leave a value as '' to hide that channel completely.
-//
-// TODO(Ago): every value below is a PLACEHOLDER. Replace before publishing.
 // ------------------------------------------------------------------
 export const contacts = {
-  // Full international number, digits only after "+". Used for the call button.
-  phone: '+37400000000',
-  // How the number is shown to people.
-  phoneDisplay: '+374 00 000 000',
+  // TODO(Ago): add your phone number to show the big "Զանգահարել" button.
+  // Full international number, digits only after "+".
+  phone: '',
+  // How the number is shown to people, e.g. '+374 00 000 000'.
+  phoneDisplay: '',
 
-  // WhatsApp number: international format, digits only, NO "+".
-  whatsapp: '37400000000',
+  // TODO(Ago): WhatsApp number — international format, digits only, NO "+".
+  whatsapp: '',
 
-  // Viber number: international format WITH "+".
-  viber: '+37400000000',
+  // TODO(Ago): Viber number — international format WITH "+".
+  viber: '',
 
-  // Telegram username WITHOUT "@".
-  telegram: 'TODO',
+  // TODO(Ago): Telegram username WITHOUT "@".
+  telegram: '',
 
-  // Full page links.
-  facebook: 'https://www.facebook.com/',
-  instagram: 'https://www.instagram.com/',
+  // Real pages (from project-docs/about-cookbox.md)
+  facebook: 'https://www.facebook.com/profile.php?id=61583908359370',
+  instagram: 'https://www.instagram.com/cookbox_arm',
 }

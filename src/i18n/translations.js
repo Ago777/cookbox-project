@@ -3,14 +3,33 @@ export const translations = {
   hy: {
     'nav.home': 'Գլխավոր',
     'nav.about': 'Մեր մասին',
-    'nav.gallery': 'Պատկերասրահ',
+    'nav.reviews': 'Կարծիքներ',
+    'nav.order': 'Պատվիրել',
+    'nav.gallery': 'Նկարներ',
     'nav.label': 'Հիմնական մենյու',
+
+    'reviews.intro': 'Իրական կարծիքներ մեր հաճախորդներից։',
+    'reviews.empty': 'Կարծիքները շուտով կավելացվեն',
+    'reviews.homeTitle': 'Ի՞նչ են ասում մեր հաճախորդները',
+    'reviews.seeAll': 'Տեսնել բոլոր կարծիքները',
+
+    'order.title': 'Ինչպես պատվիրել',
+    'order.intro': 'Պատվիրելը պարզ է՝ երեք քայլ։',
+    'order.choose.title': 'Ընտրեք',
+    'order.choose.text': 'Ընտրեք ձեզ դուր եկած ապրանքները ցանկից։',
+    'order.write.title': 'Գրեք մեզ',
+    'order.write.text': 'Գրեք մեզ Facebook-ով կամ Instagram-ով և ասեք ձեր պատվերը։',
+    'order.get.title': 'Ստացեք',
+    'order.get.text': 'Առաքում ենք Երևանում։ Վճարումը՝ կանխիկ առաքման պահին։',
 
     'lang.label': 'Լեզու',
 
-    'hero.title': 'Տնական համով կիսաֆաբրիկատներ',
-    'hero.text': 'Տոլմա, պելմենի, նրբաբլիթ, սամսա և ավելին։ Պատվիրեք զանգով կամ գրեք մեզ։',
-    'hero.cta': 'Տեսնել ապրանքները',
+    'brand.tagline': 'Տնական համով կիսաֆաբրիկատներ',
+    'home.pageTitle': 'Տնական համով կիսաֆաբրիկատներ Երևանում',
+
+    'hero.title': 'Տնական համը՝ ձեր սեղանին',
+    'hero.text': 'Տոլմա, պելմենի, կոտլետ, խաչապուրի և ավելին՝ սառեցված և պատրաստ եփելու։',
+    'hero.chipDelivery': 'Անվճար առաքում Երևանում՝ 5000 ֏-ից',
 
     'products.title': 'Մեր ապրանքները',
 
@@ -36,7 +55,7 @@ export const translations = {
     'about.payment': 'Վճարում',
     'about.hours': 'Աշխատանքային ժամեր',
 
-    'gallery.title': 'Պատկերասրահ',
+    'gallery.title': 'Նկարներ',
     'gallery.empty': 'Լուսանկարները շուտով կավելացվեն',
     'gallery.open': 'Բացել լուսանկարը',
     'gallery.close': 'Փակել',
@@ -52,14 +71,33 @@ export const translations = {
   ru: {
     'nav.home': 'Главная',
     'nav.about': 'О нас',
-    'nav.gallery': 'Галерея',
+    'nav.reviews': 'Отзывы',
+    'nav.order': 'Заказать',
+    'nav.gallery': 'Фото',
     'nav.label': 'Главное меню',
+
+    'reviews.intro': 'Настоящие отзывы наших клиентов.',
+    'reviews.empty': 'Отзывы скоро появятся',
+    'reviews.homeTitle': 'Что говорят наши клиенты',
+    'reviews.seeAll': 'Все отзывы',
+
+    'order.title': 'Как заказать',
+    'order.intro': 'Заказать просто — три шага.',
+    'order.choose.title': 'Выберите',
+    'order.choose.text': 'Выберите понравившиеся продукты из списка.',
+    'order.write.title': 'Напишите нам',
+    'order.write.text': 'Напишите нам в Facebook или Instagram и назовите заказ.',
+    'order.get.title': 'Получите',
+    'order.get.text': 'Доставляем по Еревану. Оплата наличными при доставке.',
 
     'lang.label': 'Язык',
 
-    'hero.title': 'Полуфабрикаты с домашним вкусом',
-    'hero.text': 'Толма, пельмени, блинчики, самса и многое другое. Звоните или пишите нам.',
-    'hero.cta': 'Смотреть продукцию',
+    'brand.tagline': 'Полуфабрикаты с домашним вкусом',
+    'home.pageTitle': 'Полуфабрикаты с домашним вкусом в Ереване',
+
+    'hero.title': 'Домашний вкус — на вашем столе',
+    'hero.text': 'Толма, пельмени, котлеты, хачапури и другое — замороженные и готовые к приготовлению.',
+    'hero.chipDelivery': 'Бесплатная доставка по Еревану от 5000 ֏',
 
     'products.title': 'Наша продукция',
 
@@ -85,7 +123,7 @@ export const translations = {
     'about.payment': 'Оплата',
     'about.hours': 'Часы работы',
 
-    'gallery.title': 'Галерея',
+    'gallery.title': 'Фото',
     'gallery.empty': 'Фотографии скоро появятся',
     'gallery.open': 'Открыть фото',
     'gallery.close': 'Закрыть',

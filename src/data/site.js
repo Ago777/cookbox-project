@@ -3,24 +3,27 @@
 // Every text is { hy, ru }. Empty text = that line/section is hidden.
 // ------------------------------------------------------------------
 export const site = {
-  // TODO(Ago): neutral draft — rewrite in your own words (story, quality, why CookBox).
+  // TODO(Ago): draft based on project-docs/about-cookbox.md — rewrite in your own words.
   about: {
     hy: [
-      'CookBox-ը պատրաստում է սառեցված կիսաֆաբրիկատներ՝ տոլմա, պելմենի, նրբաբլիթ, սամսա, կոտլետներ և ավելին։',
-      'Պատվերներն ընդունում ենք հեռախոսով, ինչպես նաև Facebook-ում, Instagram-ում, WhatsApp-ում, Telegram-ում և Viber-ում։',
+      'CookBox-ը պատրաստում է տնական համով կիսաֆաբրիկատներ՝ տոլմա, պելմենի, բլինչիկ, կոտլետ, խաչապուրի և ավելին։',
+      'Ամեն ինչ պատրաստվում է պատվերով, թարմ մթերքից։ Պատվիրելու համար գրեք մեզ Facebook-ով կամ Instagram-ով։',
     ],
     ru: [
-      'CookBox готовит замороженные полуфабрикаты: толму, пельмени, блинчики, самсу, котлеты и многое другое.',
-      'Заказы принимаем по телефону, а также в Facebook, Instagram, WhatsApp, Telegram и Viber.',
+      'CookBox готовит полуфабрикаты с домашним вкусом: толму, пельмени, блинчики, котлеты, хачапури и многое другое.',
+      'Всё готовится под заказ, из свежих продуктов. Чтобы заказать, напишите нам в Facebook или Instagram.',
     ],
   },
 
-  // TODO(Ago): fill in. Empty lines are not shown; if all are empty the whole block is hidden.
   delivery: {
-    area: { hy: '', ru: '' },
-    cost: { hy: '', ru: '' },
+    area: { hy: 'Երևան', ru: 'Ереван' },
+    cost: {
+      hy: 'Անվճար առաքում Երևանում՝ 5000 դրամից սկսած',
+      ru: 'Бесплатная доставка по Еревану от 5000 ֏',
+    },
+    // TODO(Ago): minimum order — not decided yet
     minOrder: { hy: '', ru: '' },
-    payment: { hy: '', ru: '' },
+    payment: { hy: 'Կանխիկ՝ առաքման պահին', ru: 'Наличными при доставке' },
   },
 
   // TODO(Ago): e.g. { hy: 'Երկ–Կիր՝ 10:00–20:00', ru: 'Пн–Вс: 10:00–20:00' }

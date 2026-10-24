@@ -1,33 +1,29 @@
-/* 2 columns on every phone (1 column made one giant card per screen), then 3 and 4 */
+/* 2 columns on every phone, then 3 and 4 as space grows */
 .product-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
+  gap: 12px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-@media (min-width: 360px) {
-  .product-grid {
-    gap: 12px;
-  }
-}
-
 @media (min-width: 720px) {
   .product-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 16px;
+    gap: 20px;
   }
 }
 
 @media (min-width: 1100px) {
   .product-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 20px;
+    gap: 24px;
   }
 }
 
+/* A hairline plus a soft shadow on a warm page separates the card without
+   18 coloured outlines competing with the food photos. */
 .product-card {
   display: flex;
   flex-direction: column;
@@ -36,17 +32,37 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
   text-decoration: none;
   transition:
-    border-color 0.15s ease,
-    box-shadow 0.15s ease,
-    transform 0.15s ease;
+    border-color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
 }
 
 .product-card:hover {
-  border-color: var(--color-orange);
-  box-shadow: 0 6px 20px rgb(23 22 21 / 0.1);
+  border-color: var(--color-border-strong);
+  box-shadow: var(--shadow-lift);
   transform: translateY(-2px);
+}
+
+/* Square in the grid so cards stay short; the product page shows the photo
+   in its full 4:5 with nothing cropped. */
+.product-card__media {
+  position: relative;
+  overflow: hidden;
+}
+
+.product-card__media .product-image {
+  aspect-ratio: 1 / 1;
+}
+
+.product-card__media .product-image img {
+  transition: transform 0.4s var(--ease);
+}
+
+.product-card:hover .product-image img {
+  transform: scale(1.04);
 }
 
 .product-card__body {
@@ -54,7 +70,7 @@
   flex: 1;
   flex-direction: column;
   gap: 2px;
-  padding: 10px 12px 12px;
+  padding: 12px 12px 12px;
 }
 
 .product-card__name {
@@ -70,61 +86,79 @@
   font-size: var(--fs-sm);
 }
 
+/* price is the strongest thing in the card, then one real button */
 .product-card__footer {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
   gap: 8px;
   margin-top: auto;
-  padding-top: 8px;
+  padding-top: 10px;
 }
 
-/* small "go" circle — only where the card is wide enough to hold it next to the price */
-.product-card__arrow {
-  display: none;
+/* from tablet up there is width for price and button on one line */
+@media (min-width: 720px) {
+  .product-card__footer {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+}
+
+.product-card__price {
+  font-size: var(--fs-price);
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+/* A labelled 44px button, on phones too. An arrow-only control is the single
+   worst pattern for this audience: no label, and hover states never fire on touch. */
+.product-card__cta {
+  display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
-  width: 34px;
-  height: 34px;
-  border: 1px solid var(--color-border);
-  border-radius: 50%;
-  background: var(--color-bg);
-  transition:
-    background-color 0.15s ease,
-    border-color 0.15s ease;
-}
-
-.product-card:hover .product-card__arrow {
-  border-color: var(--color-orange);
+  gap: 6px;
+  min-height: var(--tap);
+  padding: 0 12px;
+  border-radius: 999px;
   background: var(--color-orange);
+  color: #fff;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  text-align: center;
+  transition: background-color var(--dur) var(--ease);
 }
 
-@media (min-width: 480px) {
-  .product-card__arrow {
-    display: inline-flex;
-  }
+.product-card:hover .product-card__cta {
+  background: var(--color-orange-hover);
 }
 
-/* 320–359px: cards are ~140px wide, so slightly smaller text and padding */
-@media (max-width: 359px) {
+.product-card__cta svg {
+  flex-shrink: 0;
+}
+
+@media (min-width: 720px) {
   .product-card__body {
-    padding: 8px 10px 10px;
+    padding: 14px 16px;
   }
 
-  .product-card__name {
-    font-size: var(--fs-base);
-  }
-
-  .product-card .price {
-    padding-inline: 10px;
-    font-size: var(--fs-base);
+  .product-card__cta {
+    flex-shrink: 0;
   }
 }
 
-@media (min-width: 1024px) {
+/* narrow phones: the label alone, the arrow would push it onto two lines */
+@media (max-width: 374px) {
   .product-card__body {
-    padding: 14px 16px 16px;
+    padding: 10px 10px 12px;
+  }
+
+  .product-card__cta {
+    padding-inline: 8px;
+  }
+
+  .product-card__cta svg {
+    display: none;
   }
 }

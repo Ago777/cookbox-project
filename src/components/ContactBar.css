@@ -1,17 +1,19 @@
+/* bottom row of the app shell — never scrolls away */
 .contact-bar {
-  position: fixed;
-  inset-inline: 0;
-  bottom: 0;
+  position: relative;
   z-index: 50;
   padding-bottom: env(safe-area-inset-bottom);
   background: var(--color-surface);
-  border-top: 1px solid var(--color-border);
-  box-shadow: 0 -4px 18px rgb(23 22 21 / 0.1);
+  box-shadow: 0 -6px 24px rgb(23 22 21 / 0.13);
 }
 
-/* keep the end of the page clear of the fixed bar */
-body {
-  padding-bottom: calc(var(--bar-h) + env(safe-area-inset-bottom));
+/* orange edge echoing the line at the top of the header — it gives the
+   page a clear bottom without making the bar dark */
+.contact-bar::before {
+  content: '';
+  display: block;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-orange), #ffb06b 55%, var(--color-orange));
 }
 
 .contact-bar__inner {
@@ -85,6 +87,21 @@ body {
   display: none;
 }
 
+/* no phone number set yet → the chat buttons share the whole bar and get
+   their name next to the logo, so the bar never looks empty */
+.contact-bar__actions--no-call .contact-bar__chat {
+  flex: 1 1 0;
+  flex-direction: row;
+  gap: 8px;
+  min-height: 48px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+}
+
+.contact-bar__actions--no-call .contact-bar__label {
+  font-size: var(--fs-sm);
+}
+
 .contact-bar__chat .brand-badge {
   width: 32px;
   height: 32px;
@@ -119,12 +136,6 @@ body {
 
 /* ---------- desktop: dark footer bar with every channel ---------- */
 @media (min-width: 1024px) {
-  .contact-bar {
-    background: var(--color-dark);
-    color: #fff;
-    border-top: 0;
-  }
-
   .contact-bar__inner {
     justify-content: space-between;
     gap: 24px;
@@ -134,7 +145,7 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-    color: rgb(255 255 255 / 0.75);
+    color: var(--color-text-muted);
     font-size: var(--fs-sm);
     white-space: nowrap;
   }
@@ -176,7 +187,8 @@ body {
   }
 
   .contact-bar__chat:hover {
-    background: rgb(255 255 255 / 0.12);
+    border-color: var(--color-orange);
+    background: var(--color-bg);
   }
 
   .contact-bar__chat .brand-badge {
@@ -187,10 +199,7 @@ body {
   .contact-bar__label {
     display: none;
     font-size: var(--fs-sm);
-  }
-
-  .contact-bar :focus-visible {
-    outline-color: var(--color-orange);
+    font-weight: 700;
   }
 }
 
@@ -198,8 +207,8 @@ body {
 @media (min-width: 1280px) {
   .contact-bar__chat,
   .contact-bar__chat--desktop {
-    padding-right: 14px;
-    background: rgb(255 255 255 / 0.08);
+    padding-right: 16px;
+    border: 1px solid var(--color-border);
   }
 
   .contact-bar__label {

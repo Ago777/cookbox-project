@@ -5,7 +5,7 @@ import { Icon } from '../components/Icon'
 import { ProductImage } from '../components/ProductImage'
 import { findProduct } from '../data/products'
 import { useLanguage } from '../i18n/useLanguage'
-import { asset } from '../utils/asset'
+import { smallAsset } from '../utils/asset'
 import { formatPrice } from '../utils/format'
 import { usePageTitle } from '../utils/usePageTitle'
 import { NotFoundPage } from './NotFoundPage'
@@ -46,6 +46,7 @@ function ProductDetails({ product }) {
             src={product.images[active]}
             alt={name}
             className="product-detail__image"
+            sizes="(min-width: 900px) 600px, 100vw"
             eager
           />
           {product.images.length > 1 && (
@@ -59,7 +60,7 @@ function ProductDetails({ product }) {
                   aria-label={`${t('product.photo')} ${i + 1}`}
                   onClick={() => setActive(i)}
                 >
-                  <img src={asset(src)} alt="" loading="lazy" />
+                  <img src={smallAsset(src)} alt="" loading="lazy" />
                 </button>
               ))}
             </div>

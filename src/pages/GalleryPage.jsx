@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Lightbox } from '../components/Lightbox'
 import { galleryPhotos } from '../data/gallery'
 import { useLanguage } from '../i18n/useLanguage'
-import { asset } from '../utils/asset'
+import { smallAsset } from '../utils/asset'
 import { usePageTitle } from '../utils/usePageTitle'
 import './pages.css'
 
@@ -27,7 +27,14 @@ export function GalleryPage() {
                 aria-label={`${t('gallery.open')}: ${pick(photo.alt)}`}
                 onClick={() => setOpenIndex(i)}
               >
-                <img src={asset(photo.src)} alt="" loading="lazy" decoding="async" />
+                <img
+                  src={smallAsset(photo.src)}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  width="600"
+                  height="800"
+                />
               </button>
             </li>
           ))}

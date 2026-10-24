@@ -1,0 +1,75 @@
+.steps {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+
+@media (min-width: 720px) {
+  .steps {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+}
+
+.step {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 18px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.step__num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-orange);
+  color: var(--color-dark);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.step__title {
+  margin: 0 0 2px;
+  font-size: var(--fs-lg);
+  font-weight: 600;
+}
+
+.step__text {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+}
+
+/* on its own page the steps stack full width and read larger */
+.steps--page {
+  margin-top: 4px;
+}
+
+.steps--page .step {
+  padding: 18px 20px;
+}
+
+.steps--page .step__text {
+  font-size: var(--fs-base);
+}
+
+@media (min-width: 720px) {
+  .steps--page {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+}
